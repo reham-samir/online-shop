@@ -1,0 +1,16 @@
+<%-include('./parts/header.ejs')%> <%-include('./parts/navbar.ejs')%>
+<form action="/orders/orderone/adress" method="post" class="my-5 text-center">
+  <div class="input-group mb-3 w-50" style="margin: 0 auto">
+    <span class="input-group-text">Your Address</span>
+    <input type="text" class="form-control" name="adress" />
+    <input
+      type="hidden"
+      class="form-control"
+      name="orderId"
+      value="<%=orderId%>"
+    />
+  </div>
+  <input type="submit" value="Order" class="btn btn-success btn-lg" />
+</form>
+
+<%-include('./parts/footer.ejs')%>

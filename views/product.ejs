@@ -1,0 +1,49 @@
+<%- include('./parts/header.ejs') %> <%- include('./parts/navbar.ejs') %>
+
+<div class="container">
+  <%if(product === null){%>
+  <div class="alert alert-danger">
+    <h3>There is no Product</h3>
+  </div>
+  <%}else{%>
+  <div class="row align-items-center">
+    <div class="col col-12 col-md-6" style="text-align: center">
+      <img
+        src="/<%= product.image %>"
+        style="max-width: 400px"
+        alt="<%=product.name%>"
+      /><br />
+      <br />
+      <form action="/cart" method="post" style="text-align: center">
+        <input type="hidden" name="name" value="<%=product.name%>" />
+        <input type="hidden" name="price" value="<%=product.price%>" />
+        <input type="hidden" name="_id" value="<%=product._id%>" />
+        <input
+          type="hidden"
+          name="redirectTo"
+          value="/product/id/<%=product._id%>"
+        />
+        <input
+          type="number"
+          name="amount"
+          class="form-control"
+          style="max-width: 300px; margin: 0 auto"
+        />
+        <br />
+        <%if(validationError.length !==0){%>
+        <div class="alert alert-danger"><%=validationError[0].msg%></div>
+        <%}%>
+        <input type="submit" value="Add to cart" class="btn btn-primary" />
+      </form>
+    </div>
+    <div class="col col-12 col-md-6">
+      <br />
+      <h2><%=product.name%></h2>
+      <h5>Price : <%=product.price%> $</h5>
+      <p><%=product.description%></p>
+    </div>
+  </div>
+  <%}%>
+</div>
+
+<%- include('./parts/footer.ejs') %>
